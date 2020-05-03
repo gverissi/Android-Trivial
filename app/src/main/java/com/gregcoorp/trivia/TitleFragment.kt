@@ -30,9 +30,13 @@ class TitleFragment : Fragment() {
 //            it.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
 //        }
 
-        binding.playButton.setOnClickListener (
-            Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
-        )
+//        binding.playButton.setOnClickListener (
+//            Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
+//        )
+
+        binding.playButton.setOnClickListener {
+            it.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
+        }
 
         // Tell Android that our TitleFragment has a menu
         setHasOptionsMenu(true)
@@ -40,12 +44,14 @@ class TitleFragment : Fragment() {
         return binding.root
     }
 
+    // Where you inflate your menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         // Inflate our new menu resource using the provided menu inflater and menu structure
         inflater.inflate(R.menu.overflow_menu, menu)
     }
 
+    // Called when a menu item is selected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Connect the fragment_about to item about
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
